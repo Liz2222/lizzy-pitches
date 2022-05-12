@@ -1,4 +1,5 @@
-import datetime
+
+from datetime import datetime
 from . import db
 
 
@@ -9,12 +10,10 @@ class User(db.Model):
     username = db.Column(db.String(255),index =True)
     email = db.Column(db.String(255),unique = True,index = True)
     bio = db.Column(db.String(5000))
-    profile_pic_path = db.Column(db.String)
+    image_file = db.Column(db.String(20), nullable=False, default='default.jpg')
     pass_secure = db.Column(db.String(255))
-    
-
     pitches = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
-
+    
     comments = db.relationship('Comment',backref = 'user',lazy = "dynamic")
     
     
@@ -25,8 +24,9 @@ class Pitch(db.Model):
     pitch_title = db.Column(db.String)
     pitch_content = db.Column(db.String(1000))
     category = db.Column(db.String)
-    posted = db.Column(db.DateTime,default=datetime.utcnow)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+
     likes = db.Column(db.Integer)
     dislikes = db.Column(db.Integer)
 

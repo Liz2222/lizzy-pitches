@@ -2,7 +2,7 @@ import os
 
 class Config:
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://liz:!23456@localhost/watchlist'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://liz:1234@localhost/pitch'
 
 
 class ProdConfig(Config):
